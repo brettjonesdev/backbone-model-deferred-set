@@ -12,19 +12,35 @@
         factory(_, Backbone);
     }
 }(this, function(_, Backbone) {
-    Backbone.Model.prototype.reset = function(attrs, options) {
-        attrs = attrs || {};
-        if (options && options.parse) {
-            attrs = this.parse(attrs, options) || {};
+
+    var originalInitialize = Backbone.Model.prototype.initialize;
+    Backbone.Model.prototype.initialize = function() {
+        this.on('request', function(model, xhr) {
+            if ( !xhr || !xhr.always ) return;
+            xhr.always(_.bind(function() {
+                //only delete `this._syncingXhr` if it's the same as the xhr in our closure
+                if ( xhr === this._syncingXhr ) {
+                    delete this._syncingXhr;
+                }
+            }, this));
+            this._syncingXhr = xhr;
+
+        }, this);
+
+        return originalInitialize.apply(this, arguments);
+    };
+
+    Backbone.Model.prototype.deferredSet = function(key, val, options) {
+        //grab the current arguments so we can eventually call `set` with them unchanged
+        var args = arguments.length ? Array.prototype.slice.call(arguments, 0) : [];
+        var doSet = _.bind(function() {
+            Backbone.Model.prototype.set.apply(this, args);
+        }, this);
+        if ( this._syncingXhr ) {
+            this._syncingXhr.always(doSet);
+        } else {
+            doSet();
         }
-
-        //get the attributes which are currently present but not present in the new attrs object
-        var attributesToUnset = _.difference(_.keys(this.attributes), _.keys(attrs));
-        //unset them all
-        _.each(attributesToUnset, _.bind(this.unset, this));
-
-        //set the attributes that are passed in, secure in knowledge that any old attributes not present were unset
-        this.set(attrs);
     };
     return Backbone;
 }));

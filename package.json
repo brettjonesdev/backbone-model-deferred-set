@@ -3,11 +3,11 @@
   "title": "Backbone Model Deferred Set",
   "version": "0.0.1",
   "author": "Brett Jones",
-  "homepage": "http://github.com/brettjonesdev/backbone-model-deferred-set",
+  "repository": "http://github.com/brettjonesdev/backbone-model-deferred-set",
   "devDependencies": {
-    "backbone": "^1.2.2",
     "grunt": "~0.4.1",
-    "grunt-jasmine-node": "^0.3.1",
-    "underscore": "^1.8.3"
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-jasmine": "^1.0.3",
+    "grunt-template-jasmine-requirejs": "^0.2.3"
   }
 }
