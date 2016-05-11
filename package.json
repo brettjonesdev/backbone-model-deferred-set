@@ -4,6 +4,9 @@
   "version": "0.0.1",
   "author": "Brett Jones",
   "repository": "http://github.com/brettjonesdev/backbone-model-deferred-set",
+  "scripts": {
+    "test": "npm install && bower install && grunt test"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-connect": "^1.0.2",
