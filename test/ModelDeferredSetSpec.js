@@ -8,12 +8,10 @@ define(['backbone', 'json!test/testResponse.json', 'backbone-model-deferred-set'
             model = new Model();
         });
 
-/*
         it('deferredSet method is present', function () {
             expect(model).toBeDefined();
             expect(typeof model.deferredSet).toEqual('function');
         });
-*/
 
         it('model.deferredSet sets immediately if not syncing', function () {
             var originalAttrs = {
