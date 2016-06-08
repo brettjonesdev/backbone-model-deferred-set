@@ -1,9 +1,9 @@
 {
-  "name": "backbone-model-deferred-set",
-  "title": "Backbone Model Deferred Set",
-  "version": "0.0.1",
+  "name": "backbone-model-synced",
+  "title": "Backbone Model Synced",
+  "version": "0.0.2",
   "author": "Brett Jones",
-  "repository": "http://github.com/brettjonesdev/backbone-model-deferred-set",
+  "repository": "https://github.com/brettjonesdev/backbone-model-synced",
   "scripts": {
     "test": "npm install && bower install && grunt test"
   },

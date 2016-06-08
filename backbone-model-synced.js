@@ -30,16 +30,11 @@
         return originalInitialize.apply(this, arguments);
     };
 
-    Backbone.Model.prototype.deferredSet = function(key, val, options) {
-        //grab the current arguments so we can eventually call `set` with them unchanged
-        var args = arguments.length ? Array.prototype.slice.call(arguments, 0) : [];
-        var doSet = _.bind(function() {
-            Backbone.Model.prototype.set.apply(this, args);
-        }, this);
+    Backbone.Model.prototype.synced = function(callback) {
         if ( this._syncingXhr ) {
-            this._syncingXhr.always(doSet);
+            this._syncingXhr.always(callback);
         } else {
-            doSet();
+            callback();
         }
     };
     return Backbone;

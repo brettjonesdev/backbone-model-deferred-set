@@ -1,12 +1,12 @@
 {
-  "name": "backbone-model-deferred-set",
-  "main": "backbone-model-deferred-set.js",
+  "name": "backbone-model-synced",
+  "main": "backbone-model-synced.js",
   "version": "0.0.1",
-  "homepage": "https://github.com/brettjonesdev/backbone-model-deferred-set",
+  "homepage": "https://github.com/brettjonesdev/backbone-model-synced",
   "authors": [
     "Brett Jones <brettjonesdev@gmail.com>"
   ],
-  "description": "Enhance `Backbone.Model` with a `deferredSet` method, which won't set the attribute until any outstanding `sync`s complete",
+  "description": "Enhance `Backbone.Model` with a `synced` method, which won't set the attribute until any outstanding `sync`s complete",
   "moduleType": [
     "amd",
     "node"
